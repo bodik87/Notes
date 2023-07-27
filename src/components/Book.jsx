@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import { AnimatePresence, motion } from "framer-motion";
-import { CheckIcon } from "@heroicons/react/20/solid";
 import { useState } from "react";
 import { BookIcon, BookMenuIcon, SelectIcon, TrashIcon } from "./Icons";
 
@@ -27,70 +26,66 @@ export default function Book(props) {
           </span>
         </div>
 
-        <div
-          onClick={() => {
-            props.setSelectedBook(props.book);
-            setOpen(true);
-          }}
-          className="p-5"
-        >
+        <div onClick={() => setOpen(true)} className="p-5">
           <BookMenuIcon condition={!props.selectedItems.includes(props.book)} />
         </div>
       </motion.div>
 
-      {open && (
-        <>
-          <motion.div
-            onClick={() => setOpen(false)}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className={`bg-slate-600/20 fixed inset-0 z-40`}
-          />
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="absolute top-2 right-2 z-50 bg-[#272D37] text-white rounded-lg"
-          >
-            <div className="flex flex-col gap-4 py-4 px-5">
-              {!props.selectedItems.includes(props.book) && (
+      <AnimatePresence initial={false}>
+        {open && (
+          <>
+            <motion.div
+              onClick={() => setOpen(false)}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className={`bg-slate-600/20 fixed inset-0 z-40`}
+            />
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="absolute top-8 right-4 z-50 bg-[#272D37] text-white rounded-lg"
+            >
+              <div className="flex flex-col gap-4 py-4 px-5">
+                {!props.selectedItems.includes(props.book) && (
+                  <button
+                    onClick={() => {
+                      props.deleteBook(props.book.id);
+                      setOpen(false);
+                    }}
+                    className="flex gap-2 items-center"
+                  >
+                    <TrashIcon
+                      condition={!props.selectedItems.includes(props.book)}
+                    />
+                    <span>Видалити</span>
+                  </button>
+                )}
+
                 <button
                   onClick={() => {
-                    props.deleteBook(props.book.id);
+                    props.toggleSelectedItems(props.book);
                     setOpen(false);
                   }}
                   className="flex gap-2 items-center"
                 >
-                  <TrashIcon
+                  <SelectIcon
                     condition={!props.selectedItems.includes(props.book)}
                   />
-                  <span>Видалити</span>
+                  <span>
+                    {props.selectedItems.includes(props.book)
+                      ? "Зняти вилілення"
+                      : "Виділити"}
+                  </span>
                 </button>
-              )}
-
-              <button
-                onClick={() => {
-                  props.toggleSelectedItems(props.book);
-                  setOpen(false);
-                }}
-                className="flex gap-2 items-center"
-              >
-                <SelectIcon
-                  condition={!props.selectedItems.includes(props.book)}
-                />
-                <span>
-                  {props.selectedItems.includes(props.book)
-                    ? "Зняти вилілення"
-                    : "Виділити"}
-                </span>
-              </button>
-            </div>
-          </motion.div>
-        </>
-      )}
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
