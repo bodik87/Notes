@@ -49,28 +49,13 @@ export default function Book(props) {
               transition={{ duration: 0.3 }}
               className="absolute top-8 right-4 z-50 bg-[#272D37] text-white rounded-lg"
             >
-              <div className="flex flex-col gap-4 py-4 px-5">
-                {!props.selectedItems.includes(props.book) && (
-                  <button
-                    onClick={() => {
-                      props.deleteBook(props.book.id);
-                      setOpen(false);
-                    }}
-                    className="flex gap-2 items-center"
-                  >
-                    <TrashIcon
-                      condition={!props.selectedItems.includes(props.book)}
-                    />
-                    <span>Видалити</span>
-                  </button>
-                )}
-
+              <div className="flex flex-col gap-2 py-3 pl-5 pr-8">
                 <button
                   onClick={() => {
                     props.toggleSelectedItems(props.book);
                     setOpen(false);
                   }}
-                  className="flex gap-2 items-center"
+                  className="h-12 flex gap-2 items-center"
                 >
                   <SelectIcon
                     condition={!props.selectedItems.includes(props.book)}
@@ -81,6 +66,21 @@ export default function Book(props) {
                       : "Виділити"}
                   </span>
                 </button>
+
+                {!props.selectedItems.includes(props.book) && (
+                  <button
+                    onClick={() => {
+                      props.deleteBook(props.book.id);
+                      setOpen(false);
+                    }}
+                    className="h-12 flex gap-2 items-center"
+                  >
+                    <TrashIcon
+                      condition={!props.selectedItems.includes(props.book)}
+                    />
+                    <span>Видалити</span>
+                  </button>
+                )}
               </div>
             </motion.div>
           </>
