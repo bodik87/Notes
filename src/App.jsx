@@ -44,7 +44,7 @@ export default function MultiSelect() {
   const [sideMenuVisible, setSideMenuVisible] = useState(false);
 
   return (
-    <div className="min-h-screen md:min-h-[calc(100vh_-_32px)] mx-auto flex max-w-sm flex-col rounded-lg bg-slate-50 shadow-[0_35px_60px_-15px_rgba(148,163,184,0.5)] relative overflow-hidden">
+    <div className="min-h-screen md:min-h-[calc(100vh_-_32px)] mx-auto flex max-w-sm flex-col md:rounded-lg bg-slate-50 shadow-[0_35px_60px_-15px_rgba(148,163,184,0.5)] relative overflow-hidden">
       <Header
         messages={messages}
         sideMenuVisible={sideMenuVisible}

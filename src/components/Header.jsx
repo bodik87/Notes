@@ -1,9 +1,53 @@
 /* eslint-disable react/prop-types */
 import { AnimatePresence, motion } from "framer-motion";
 import { PlusIcon, Bars3Icon } from "@heroicons/react/20/solid";
-import { NavLink } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
+import { UserAuth } from "../context/AuthContext";
+import { useEffect, useState } from "react";
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getDoc,
+  onSnapshot,
+  query,
+  updateDoc,
+} from "firebase/firestore";
+import { db } from "../../firebase";
 
 export default function Header(props) {
+  const { user, logout } = UserAuth();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const [books, setBooks] = useState([]);
+
+  // READ
+  useEffect(() => {
+    setLoading(true);
+    const booksQuery = query(collection(db, String(user.email)));
+    const getBooks = onSnapshot(booksQuery, (querySnapshot) => {
+      let itemsArr = [];
+
+      querySnapshot.forEach((doc) => {
+        itemsArr.push({ ...doc.data(), id: doc.id });
+      });
+      setBooks(itemsArr);
+
+      return () => getBooks();
+    });
+  }, [user?.email]);
+
+  // DELETE
+  const deleteBooks = async (id) => {
+    await deleteDoc(doc(db, String(user.email), id));
+  };
+
+  if (!user) {
+    return <Navigate to="/login" />;
+  }
+
   return (
     <div className="flex justify-between border-b p-2 text-right">
       <div className="flex gap-4">
@@ -13,26 +57,12 @@ export default function Header(props) {
         >
           <Bars3Icon className="h-5 w-5" />
         </button>
-        <NavLink
+        <Link
           to={`/books`}
-          className={({ isActive }) => {
-            return isActive
-              ? "rounded-md font-semibold flex items-center justify-center transition-all text-black"
-              : "rounded-md font-semibold flex items-center justify-center transition-all text-slate-600";
-          }}
+          className="rounded-md font-semibold flex items-center justify-center transition-all text-black"
         >
           Книги
-        </NavLink>
-        <NavLink
-          to={`/chapters`}
-          className={({ isActive }) => {
-            return isActive
-              ? "rounded-md font-semibold flex items-center justify-center transition-all text-black"
-              : "rounded-md font-semibold flex items-center justify-center transition-all text-slate-600";
-          }}
-        >
-          Розділи
-        </NavLink>
+        </Link>
         <button
           onClick={props.addMessage}
           className="absolute bottom-4 right-4 h-12 w-12 rounded-full font-semibold flex items-center justify-center transition-all bg-blue-200 hover:bg-blue-300"
