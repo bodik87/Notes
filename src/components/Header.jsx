@@ -19,13 +19,15 @@ export default function Header(props) {
         >
           Книги
         </Link>
+
         <button
           onClick={props.addMessage}
-          className="absolute bottom-4 right-4 h-12 w-12 rounded-full font-semibold flex items-center justify-center transition-all bg-blue-200 hover:bg-blue-300"
+          className="fixed bottom-4 right-4 h-12 w-12 rounded-full font-semibold flex items-center justify-center transition-all bg-blue-200 hover:bg-blue-300"
         >
           <PlusIcon className="h-5 w-5" />
         </button>
       </div>
+
       <AnimatePresence>
         {props.messages.length > 0 && props.selectedMessages.length > 0 && (
           <motion.button
