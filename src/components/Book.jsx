@@ -10,18 +10,18 @@ export default function Book(props) {
       <motion.div
         key={props.book.id}
         initial={{ opacity: 0, height: 0 }}
-        animate={{ opacity: 1, height: "48px" }}
+        animate={{ opacity: 1, height: "55px" }}
         exit={{ opacity: 0, height: 0 }}
         transition={{ duration: 0.3 }}
         className={`${
           props.selectedItems.includes(props.book)
-            ? "bg-blue-500 text-white"
+            ? "bg-myBlue text-white"
             : "hover:bg-slate-200"
         } my-[2px] w-full flex items-center justify-between cursor-pointer truncate rounded pl-4 text-left transition-all active:scale-[98%] origin-top-right will-change-auto relative`}
       >
         <div className="flex gap-2 items-center">
           <BookIcon condition={!props.selectedItems.includes(props.book)} />
-          <span className="truncate text-sm font-medium capitalize">
+          <span className="truncate font-medium capitalize">
             {props.book.bookTitle}
           </span>
         </div>

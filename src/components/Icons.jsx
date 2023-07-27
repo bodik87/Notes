@@ -3,7 +3,7 @@ export function BookMenuIcon({ condition }) {
     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="4" fill="none">
       <path
         fill="#3B82F6"
-        className={`${condition ? "fill-[#3B82F6]" : "fill-[#fff]"}`}
+        className={`${condition ? "fill-myBlue" : "fill-[#fff]"}`}
         d="M4 2a2 2 0 1 1-4 0 2 2 0 0 1 4 0ZM11 2a2 2 0 1 1-4 0 2 2 0 0 1 4 0ZM18 2a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"
       />
     </svg>

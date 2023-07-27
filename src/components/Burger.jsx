@@ -68,7 +68,7 @@ export default function Burger(props) {
         } absolute top-0 bottom-0 left-0 px-4 max-w-xs w-full py-2 bg-slate-100 z-40 transition-all`}
       >
         <div className="flex justify-between items-center mb-2 h-12">
-          <h1 className="flex ml-4 font-semibold text-black text-xl select-none">
+          <h1 className="flex ml-4 font-semibold text-black text-2xl select-none">
             Книги
           </h1>
 
@@ -117,7 +117,7 @@ export default function Burger(props) {
                 animate={{ opacity: 1, height: "48px" }}
                 exit={{ opacity: 0, height: 0 }}
                 transition={{ duration: 0.3 }}
-                className="w-full px-6 bg-transparent outline-none my-2 truncate text-sm font-medium"
+                className="w-full px-4 bg-transparent outline-none my-2 truncate font-medium"
                 placeholder="Введіть назву..."
                 value={bookTitle}
                 onChange={(e) => setBookTitle(e.target.value)}
@@ -127,7 +127,7 @@ export default function Burger(props) {
 
           <button
             type="submit"
-            className="mt-4 w-full bg-[#569CFB] hover:bg-[#68a6fc] text-white h-12 px-4 rounded-md font-semibold flex items-center justify-center transition-all active:bg-[#4984d6] outline-none"
+            className="mt-4 w-full bg-myBlue hover:bg-[#68a6fc] text-white h-12 px-4 rounded-md font-semibold flex items-center justify-center transition-all active:bg-[#4984d6] outline-none"
           >
             {!visibleInput ? "Нова книга" : "Зберегти"}
           </button>
