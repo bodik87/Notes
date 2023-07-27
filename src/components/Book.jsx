@@ -47,7 +47,7 @@ export default function Book(props) {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="absolute top-8 right-4 z-50 bg-[#272D37] text-white rounded-lg"
+              className="absolute top-8 right-4 z-50 bg-[#272D37] text-white rounded-lg shadow-xl"
             >
               <div className="flex flex-col gap-2 py-3 pl-5 pr-8">
                 <button
