@@ -39,14 +39,14 @@ export default function Book(props) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.2 }}
               className={`bg-slate-600/20 fixed inset-0 z-40`}
             />
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.2 }}
               className="absolute top-8 right-4 z-50 bg-[#272D37] text-white rounded-lg shadow-xl"
             >
               <div className="flex flex-col gap-2 py-3 pl-5 pr-8">
