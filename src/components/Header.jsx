@@ -1,53 +1,9 @@
 /* eslint-disable react/prop-types */
 import { AnimatePresence, motion } from "framer-motion";
 import { PlusIcon, Bars3Icon } from "@heroicons/react/20/solid";
-import { Link, Navigate } from "react-router-dom";
-import { UserAuth } from "../context/AuthContext";
-import { useEffect, useState } from "react";
-import {
-  addDoc,
-  collection,
-  deleteDoc,
-  doc,
-  getDoc,
-  onSnapshot,
-  query,
-  updateDoc,
-} from "firebase/firestore";
-import { db } from "../../firebase";
+import { Link } from "react-router-dom";
 
 export default function Header(props) {
-  const { user, logout } = UserAuth();
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-
-  const [books, setBooks] = useState([]);
-
-  // READ
-  useEffect(() => {
-    setLoading(true);
-    const booksQuery = query(collection(db, String(user.email)));
-    const getBooks = onSnapshot(booksQuery, (querySnapshot) => {
-      let itemsArr = [];
-
-      querySnapshot.forEach((doc) => {
-        itemsArr.push({ ...doc.data(), id: doc.id });
-      });
-      setBooks(itemsArr);
-
-      return () => getBooks();
-    });
-  }, [user?.email]);
-
-  // DELETE
-  const deleteBooks = async (id) => {
-    await deleteDoc(doc(db, String(user.email), id));
-  };
-
-  if (!user) {
-    return <Navigate to="/login" />;
-  }
-
   return (
     <div className="flex justify-between border-b p-2 text-right">
       <div className="flex gap-4">
