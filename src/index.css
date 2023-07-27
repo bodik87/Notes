@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  @apply bg-slate-200 sm:p-4;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  @apply w-2 h-1.5;
+}
+::-webkit-scrollbar-track {
+  @apply bg-slate-200 rounded-md m-0;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-400 rounded-none;
+}
